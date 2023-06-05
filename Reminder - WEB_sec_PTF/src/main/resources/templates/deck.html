@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>TrallalÀpp - WEB</title>
+ 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- ICONE PULSANTI -->
+<link href="https://cdnjs.com/libraries/font-awesome" rel="stylesheet"/>  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js' ></script>  <!-- crossorigin='anonymous' // se lo metto le icone non sono visibile a chi si collega -->
+<!-- toogle -->
+
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+ 
+<!--  -->
+
+ <style type="text/css">
+/*@import url('http://getbootstrap.com/dist/css/bootstrap.css');*/
+
+
+div.allinea { float:left; margin-left:5px; }
+
+
+/* menu */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 10%;     /*  larghezza colonna del menu*/
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+  background-color: #6699ff;
+  color: black;
+}
+
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+
+/* menu -- fine*/
+
+/* footer */
+
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: grey;
+  color: white;
+  text-align: center;
+}
+
+/* -- footer - fine */ 
+
+table{
+  border-radius: 5px;
+  border-collapse: separate;
+  width: 80%;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  
+}
+
+
+thead,
+tfoot {
+    background-color: #ff9966;
+    text-align:left; 
+    color: #fff; 
+} 
+
+th{
+   background:#ff7f7f;
+}
+
+tr:nth-child(odd) {
+  background: #e4f0f5;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd; 
+}
+
+tbody {
+    background-color: #e4f0f5;    
+}
+
+tbody>tr>:nth-child(3){ 
+	color:black; 
+	/*larghezza: 100 px;*/ 
+	text-align:left; 
+	font-weight: bold; 
+	background-color: rgb(green);
+}
+
+tbody>tr>:nth-child(2){ 
+	color:black; 
+	/*larghezza: 100 px;*/ 
+	text-align:left; 
+	/*font-weight: bold;*/ 
+	background-color: rgb(green);
+}
+
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #ACD1E0;
+}
+
+td{
+  padding: 10px;
+  text-align: center; 
+}
+
+th{
+  padding: 10px;
+  text-align: left; 
+}
+
+
+.modal-lg {
+    max-width: 80%;
+}
+
+
+  tr{cursor: pointer; transition: all .25s ease-in-out}
+     .selected{background-color: blue; 
+     font-weight: bold; 
+     color: #fff;
+  }
+  
+  
+  
+
+.myform{
+  border-collapse: collapse;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  background-color: #e3e2f2;
+  border-radius: 5px;
+  /*width:100%;*/
+  height: 100px;
+  display:none;
+}
+  
+
+
+
+
+/*--------------------------------------------------------------menu on table row */
+
+#contextMenu {
+  position: absolute;
+  display: none;
+}
+
+.wrap{
+  width:90%;
+  display:block;
+  margin:0 auto;
+}
+
+
+   .container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/*-----botton + ---------*/ 
+.btn-toolset-min {
+ display: inline-block;
+ text-align: center;
+ white-space: nowrap;
+ color: #FFFFFF;
+ text-decoration: none;
+ line-height: 1.2;
+ font-weight: bold;
+ font-family: sans-serif;
+ font-size: 18px;
+ background-color: #007BFF;
+ border-radius: 17px;
+ padding: 1px 8px;
+ border: 1px solid #006FE6;
+ cursor: pointer;
+}
+.btn-toolset:hover {
+ background-color: #0063CC;
+ border-color: #0056B3;
+}
+.btn-toolset > strong {
+ font-size: 24px;
+}
+
+tr.strikeout td:before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-bottom: 1px solid #111;
+  width: 100%;
+}
+
+tr.strikeout td:after {
+  content: "\00B7";
+  font-size: 1px;
+}
+       
+</style>
+
+ 
+ <script type="text/javascript">
+ 
+ function DatadiOggi(){
+		
+		var today = new Date();
+		var dd = String(today.getDate()).padStart(2, '0');
+		var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+		var yyyy = today.getFullYear();
+		today = '  '+ dd + '-' + mm + '-' + yyyy;
+		document.getElementById("mydate").innerHTML = today;
+								
+ }
+ 
+ function pressed(colore,priorita){
+	 document.getElementById(colore).classList.remove('shadow-lg');
+	 document.getElementById(colore).classList.add('shadow-none');
+	 passaggioPriorita(priorita);
+	 
+ }
+ 
+ 
+ function outButton(colore){
+	 document.getElementById(colore).classList.remove('shadow-none');
+	 document.getElementById(colore).classList.add('shadow-lg');
+ }	
+ 
+	
+function passaggioPriorita(priorita){	
+	localStorage.setItem("storagePrio",priorita);  //passaggio dato alla pagina web  
+	window.location.href = 'tasks';		
+}	
+
+function openForm(){
+	 var x = document.getElementById("myform");
+	  if (x.style.display === "none") {
+	    x.style.display = "block";
+	  } else {
+	    x.style.display = "none";
+	  }	
+}
+	 
+ 
+</script>
+<script type="text/javascript">
+      
+google.charts.load("current", {packages:["corechart"]});
+google.charts.setOnLoadCallback(drawChart);
+
+
+/*      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);*/
+
+     /* function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses', 'Profit'],
+          ['2014', 1000, 400, 200],
+          ['2015', 1170, 460, 250],
+          ['2016', 660, 1120, 300],
+          ['2017', 1030, 540, 350]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Andamento giornaliero:',
+            subtitle: 'Prova',           
+            chartArea: {
+                backgroundColor: {
+                  fill: '#579cc9',
+                  fillOpacity: 0.1
+                },
+              },
+          },  
+         	backgroundColor: {
+            fill: '#579cc9',
+            fillOpacity: 0.8
+          },
+          
+        };
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }*/
+      
+      
+      function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['priorità 1',     11],
+            ['priorità 2',      2],
+            ['priorità 3',  2],
+            ['priorità 4', 2]
+            
+          ]);
+
+          var options = {
+            title: 'Task Pianificati',
+            pieHole: 0.4,
+            backgroundColor: {
+                fill: '#579cc9',
+                fillOpacity: 0.8
+              },
+          };
+
+          var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+          chart.draw(data, options);
+        }
+   
+      
+      
+      
+      
+      
+      function makeJsonInsert() {
+			
+			let scadenza = document.getElementById("fname").value;    			
+			let date = document.getElementById('datascad').value;
+			let vObj ={scadenza: scadenza, dataconsegna: date};    		    					
+		    return vObj;
+		    
+	  }
+      
+      
+      
+      function InserimentoRecord() {
+    		 
+    		//--controlli 
+    			if (document.getElementById("fname").value == ''){
+    				alert("indicare la scadenza");
+    				document.getElementById("fname").focus();  //localizzazione in abbinata con il false sotto
+    				return false;
+    			} if (document.getElementById("datascad").value == '') {
+    				alert("Indicare la data di consegna/Scadenza!");
+    				document.getElementById("datascad").focus();
+    				return false; 
+    			}
+    			// fine controlli 
+    			
+    		   	 Myjson = makeJsonInsert();
+    			 $.ajax({
+    					     type: 'POST',
+    			        	 url: '/saveScad',
+    		  	         	 data: Myjson, 	  	      
+    		  	             contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+    		                 success: function(result) {
+    	                             	alert(result);
+    	                    	     	//$('#exampleModal2').modal('hide'); 
+    	            	             	//getChange();
+    	           	                    
+    	                         	  }, error: function() {
+    	                                 alert("Chiamata FALLITA,  probabile sessione scaduta..");
+    	                              }
+    		     }); 
+    			 var x = document.getElementById("myform");
+    			 x.style.display = "none"; 
+    			 window.location.href = "/";    			
+    			 rigaRow();    				 
+    	 }  // -- FINE inserimento record
+    	 
+    	 
+    	 function RigaRow(){
+			  
+    		  $('#myTable tr').each(function () {
+    			   debugger
+    			   var stato = $('td',this).eq(3).text();
+    	 	       console.log(stato);
+    	 	       switch (stato) {
+    	 	           case 'X':
+    	 	        	  $(this).css("text-decoration", "line-through");  	 	        	
+    	 	        	  // $(this).closest("tr").css("text-decoration", "line-through");    	 	        	  
+    	 	              break;
+    	 	           default:
+    	 	               // statements_def
+    	 	               break;
+    	 	       }
+    	 	     
+    	 	      
+    	 	    });
+    	  }
+    	 
+    	 
+    	 
+    	  function prendiAnno(){
+    		  let oggi = new Date();
+    		  document.getElementById("showAnno").innerHTML = oggi.getFullYear();     		  
+    	  }
+              
+      
+      
+    </script>
+   
+ </head>
+ 
+ <body  style="background-color:#a2b9bc"  onload="DatadiOggi();prendiAnno();openForm()">
+ <script type="text/javascript">
+ /*	window.onload = function() {
+	    let oggi = new Date();
+	    document.getElementById("showAnno").innerHTML = oggi.getFullYear();        
+	}*/
+ </script>
+
+  <div class="row flex-nowrap">   <!-- row flex-nowrap -->
+  
+       	<div class="col"><!-- face="Verdana" size="4.5" -->
+      	 	<ul>
+  				<li><a class="active panel-body shadow-sm"><img src="favicon(1).ico"  width="40" height="40"><b><font face="Arial" size="5.0">&nbsp;&nbsp;TrallaLÀpp </font></b></a></li>  <!-- container-fluid panel-body shadow-lg -->
+  				<li>&nbsp;</li>
+  				<li><b>&nbsp;</b></li>  	<!-- style="border:3px; border-style:solid; border-color:#FF0000; padding: 1em;" border-color:#FF0000; padding: 1em;" -->
+  				<li><b><p class="active panel-body shadow" style="position: absolute; left:25px; border:1px; border-radius: 5px ;border-style:solid; border-color:#000000;" id="mydate" ></p></b></li>
+  				<li><b>&nbsp;</b></li> 
+  				<li><b>&nbsp;</b></li> 
+  				<li><b>&nbsp;</b></li> 
+  				<li><b>&nbsp;</b></li> 
+  				<li><b><p class="active panel-body shadow-lg" style="position: absolute; left:25px; border:1px; border-radius: 5px; border-style:solid; border-color:#000000; background-color: coral; display:none" id="stato"></p></b></li>
+  				<li><b>&nbsp;</b></li> 
+  				<li><b>&nbsp;</b></li>   
+  				<li><b>&nbsp;</b></li>	
+  				<li><b>&nbsp;</b></li> 			   				    				
+  				<li><a th:href="@{clienti}"><i class='far fa-address-card' style='font-size:20px'></i>&nbsp;Clienti</a></li>
+  				<li><a th:href="@{tasks}"><i class='fas fa-tools' style='font-size:20px'></i>&nbsp;Pannello Attività</a></li>  			
+ 				<li><a href="#about" data-toggle="modal" data-target="#modalAbout" onclick ="" ><i class="fa fa-question-circle" style="font-size:20px"></i>&nbsp;About</a></li>
+ 				<li><b>&nbsp;</b></li> 
+ 				<li><a th:href="@{/impostazioni}"><i class='fas fa-cogs' style='font-size:20px'></i>&nbsp;Impostazioni</a></li>
+ 				<li><a th:href="@{/logout}"><i class='fas fa-hourglass-end' style='font-size:20px'></i>&nbsp;logout</a></li>  
+ 				<li><b>&nbsp;</b></li> 
+ 				<li><a th:href="@{/shutdown-app}"><i class='fas fa-power-off' style='font-size:20px'></i>&nbsp;Uscita</a></li>
+			</ul>    
+     </div>  <!-- row -->
+
+   
+<div class="container-fluid">   
+<div class="row">  
+  <h2 style ="position:relative;left:10%"> DashBoard di : <span th:text="${ruolo}"></span></h2> 
+  <div  class="col-md-15 p-4 offset-md-3 card-deck" style ="position:relative;left:20%">
+   	<div id="rosso" class="col-3 p-5 card bg-danger shadow-lg" onclick="pressed('rosso',1)" onmouseout="outButton('rosso')">
+        <div class="card-body text-center">
+           <h3><p class="card-text">Task in priorità Rossa</p></h3>
+           <br>
+           <h2><span th:text="${priorita.getRossi()}"></span></h2>
+        </div>
+    </div>  
+    <div  id ="giallo" class="col-3 p-5 card bg-warning shadow-lg" onclick="pressed('giallo',2)" onmouseout="outButton('giallo')">
+      <div class="card-body text-center">
+        <p class="card-text"><h3>Task in priorità Gialla</h3></p>
+        <br>
+        <h2><span th:text="${priorita.getGialli()}"></span></h2>
+      </div>
+    </div>
+     <div id="verde" class=" col-3 p-5 card bg-success shadow-lg" onclick="pressed('verde',3)" onmouseout="outButton('verde')">
+      <div class="card-body text-center">
+        <p class="card-text"><h3>Task in priorità Verde</h3></p>
+        <br>
+        <h2><span th:text="${priorita.getVerdi()}"></span></h2>
+      </div>
+    </div>
+    <div class="col-3 p-5 card bg-primary shadow-lg">
+      <div class="card-body text-center"><h3>
+        <p class="card-text">...Altro...</p>
+        <p class="card-text"></p>
+        <p class="card-text"></p></h3>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row"> 
+<div class="col" style ="position:relative;left:10%">
+ <h2>Indicatori:</h2> 
+  
+  <div class="col-sm-6">
+		<div id="donutchart" style="width: 700px; height: 450px;"></div>  
+  </div>  
+   
+  
+ </div>
+ <div class="col-sm-4" style ="position:relative;right:3%">  
+
+  <h2>Scadenze anno: <p id="showAnno" style="display:inline-block"></p></h2> 
+  <table id="myTable">
+  	<thead>
+  	  <tr>
+  	   <th>Scadenza</th>
+  	   <th>Quando <input type="button" class="btn-toolset-min float-right" value="+" onclick="openForm()"></th>   	   	 
+  	  </tr> <!-- btn btn-primary -->
+  	</thead>
+  	<tbody>
+                               
+                               <tr th:each="scadenza : ${scadenze}"  onmouseover="">
+                                    <td style = "display:none" th:text="${scadenza.getIdreminder()}" ></td>
+                                    <td th:text="${scadenza.getLavoro()}" contenteditable='true'></td>     
+                                    <td th:text="${scadenza.getDataconsegna()}"></td>
+                                    <td style = "display:none" th:text="${scadenza.getState()}" ></td>
+                               </tr> 
+                               
+    </tbody>
+  </table>
+  <script type="text/javascript">
+  			RigaRow();
+  </script>
+  <br>
+
+<div id="myform" class="col-sm-9 myform">
+<!-- class="col-sm-4" style ="position:relative;right:3%"    ;   buono class="col-sm-9 myform" -->
+ <form id="formScadenza" action="">
+ 	<div class="allinea">
+ 	 <label for="fname">Scadenza:</label><br>
+  	 <input type="text" id="fname"  size="35" name="fname">
+    </div>
+    <div class="allinea">
+      <label for="lname">Quando:</label><br>
+  	  <input type="date" id="datascad" name="datascad"><br>
+    </div>  
+    <br>  
+    <br>  
+    <br>       
+</form> 
+<div class="allinea">
+ 	  <input type="submit" value="Salva" onclick="InserimentoRecord()">
+</div>
+</div>
+ 
+ 
+ </div>
+ 
+ 
+ 
+     
+</div>
+
+ 
+
+
+
+</div>
+
+ 
+ 
+     
+     <div class="footer">
+ 		 <p>2022 - EnrstoSw - Versione 2.0 - WRK</p>
+	 </div>
+
+ <!-- menu contestuale -->          
+              <div id="contextMenu" class="dropdown clearfix">
+    						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">
+      							<li><a tabindex="-1" href="#" onclick="Elimina(); return false;" ><i class='far fa-trash-alt' style='font-size:18px'></i> Elimina</a>
+      							</li>
+      							<li><a tabindex="-1" href="#" onclick="Duplica(); return false;"><i class='far fa-clone' style='font-size:18px'></i> Duplica</a>
+      							</li>
+      							<li><a tabindex="-1" href="#" data-toggle="modal" data-target="#modalModificaDataRiga" onclick="sposta();"><i class='far fa-calendar-alt' style='font-size:18px'></i>  Sposta</a>
+      							</li>
+     							<li class="divider"></li>
+      							<li><a tabindex="-1" href="#" onclick="passaggioVariabile();">Anagrafica Clienti</a>
+      							</li>
+    						</ul>
+  			</div>
+   <!-- menu contestuale -->   
+           
+           
+          <!-- Modal -->
+
+	   	 	<!--about  -->	
+	   	        	<div class="modal fade" id="modalAbout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	   	        	  <div class="modal-dialog modal-lg" role="document">
+	   	        	    <div class="modal-content">
+	   	        	     <div class="modal-header">
+      						  <h5 class="modal-title" id="exampleModalLabel">About</h5>
+     						   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        						  <span aria-hidden="true">&times;</span>
+     						   </button>
+     					 </div>
+     					 <div>&nbsp;</div>
+     					 <div><center><b><img src="favicon(1).ico"  width="30" height="30"><font face="Verdana" size="4.5"> TrallalÀpp - WEB 2.0 </font></b></center></div>
+     					 <div>&nbsp;</div>
+     					 <div><b>&nbsp;&nbsp;<font face="Verdana" size="3.5">Questo progetto nasce dall'esigenza di pianificare le attività quotidiane di una piccola realtà.</font></b></div>
+     					  <div><center><b>&nbsp;&nbsp;<font face="Verdana" size="3.5"> - </font></b></center></div>
+     					 <div><center><b>&nbsp;&nbsp;<font face="Verdana" size="3.5">A Nadia e il suo Sogno.</font></b></center></div>
+     					 <div>&nbsp;</div>
+     					 <div class="modal-footer">
+       					  		 <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>      							
+     					 </div>
+	   	        	    </div>	   	        	      
+	   	        	  </div>   	        	
+	   	           	</div>
+	   	        		
+	   	 <!-- ABout  -->
+	   	 </div>
+
+<script> 
+//la funzione la richiamo anche qua perchè altrimenti non ridimensiona correttamnete da un monitor all'altro
+ //  resizeBrowser();
+</script>
+
+ 
+ </body> 
+  
+ </html>

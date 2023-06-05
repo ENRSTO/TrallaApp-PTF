@@ -1,0 +1,997 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"      xmlns:th="https://www.thymeleaf.org" > 
+   <!-- xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" -->
+   <head> 
+      <title>TrallalÀpp - WEB -> Clienti </title> 
+      
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- ICONE PULSANTI -->
+<link href="https://cdnjs.com/libraries/font-awesome" rel="stylesheet"/>  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js' ></script>  <!-- crossorigin='anonymous' // se lo metto le icone non sono visibile a chi si collega -->
+<!-- toogle -->
+
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<style type="text/css">
+	   
+#contextMenu {
+  position: absolute;
+  display: none;
+}
+
+.wrap{
+  width:90%;
+  display:block;
+  margin:0 auto;
+}	   
+	   
+	   
+	   
+/*-----botton + ---------*/ 
+.btn-toolset {
+ display: inline-block;
+ text-align: center;
+ white-space: nowrap;
+ color: #FFFFFF;
+ text-decoration: none;
+ line-height: 1.2;
+ font-weight: bold;
+ font-family: sans-serif;
+ font-size: 25px;
+ background-color: #006FE6;
+ border-radius: 30px;
+ padding: 10px 17px;
+ border: 3px solid #006FE6;  /*0063CC*/
+ cursor: pointer;
+}
+.btn-toolset:hover {
+ background-color: #0063CC;
+ border-color: #632DD6;
+}
+.btn-toolset > strong {
+ font-size: 20px;
+}
+	   
+	   
+
+/*-----botton + ---------*/ 
+.btn-toolset-min {
+ display: inline-block;
+ text-align: center;
+ white-space: nowrap;
+ color: #FFFFFF;
+ text-decoration: none;
+ line-height: 1.2;
+ font-weight: bold;
+ font-family: sans-serif;
+ font-size: 18px;
+ background-color: #007BFF;
+ border-radius: 17px;
+ padding: 1px 8px;
+ border: 1px solid #006FE6;
+ cursor: pointer;
+}
+.btn-toolset:hover {
+ background-color: #0063CC;
+ border-color: #0056B3;
+}
+.btn-toolset > strong {
+ font-size: 24px;
+}
+
+	   
+	   
+	   /* change the background color */
+.navbar-custom {
+    background-color: #508bfc;
+}
+
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: #000000;
+    font-family: Verdana;
+    font-size: 25px;
+}
+
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: #000000;
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:focus .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: pink;
+}
+
+/* for dropdowns only */
+.navbar-custom .navbar-nav .dropdown-menu {
+    background-color: #ddaa11;
+}
+
+/* dropdown item text color */
+.navbar-custom .navbar-nav .dropdown-item {
+    color: #000000;
+}
+
+/* dropdown item hover or focus */
+.navbar-custom .navbar-nav .dropdown-item:hover,
+.navbar-custom .navbar-nav .dropdown-item:focus {
+    color: #eeeeee;
+    background-color: red;
+}
+
+/* tabella clienti */
+.table-wrapper{
+ 
+  position : center;
+  overflow-y: scroll;
+  height: 609px;
+  background:#f7f8f9;
+  
+}
+
+
+.table-wrapper th{
+    position: sticky;
+    top: 0;
+    background: #6699ff;
+ }
+
+table{
+  border-collapse: collapse;
+  width: 100%;
+   
+}
+
+thead,
+tfoot {
+    background-color: #3f87a6;
+    text-align:left; 
+   /* color: #fff;*/
+}
+
+th{
+   background:#DDD;
+}
+
+tr:nth-child(odd) {
+  background: #e4f0f5;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd; 
+}
+
+tbody {
+    background-color: #e4f0f5;
+           
+}
+
+tbody>tr>:nth-child(3){ 
+	color:black; 
+	/*larghezza: 100 px;*/ 
+	text-align:left; 
+	font-weight: bold; 
+	background-color: rgb(green);
+	
+}
+
+tbody>tr>:nth-child(2){ 
+	color:black; 
+	/*larghezza: 100 px;*/ 
+	text-align:left; 
+	/*font-weight: bold;*/ 
+	background-color: rgb(green);
+}
+
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #ACD1E0;
+}
+
+td{
+  padding: 10px;
+  text-align: center; 
+  border: 1px solid; /* aggiunta */
+}
+
+th{
+  padding: 10px;
+  text-align: left; 
+}
+
+/* colonne intestazioni centrate  */
+
+thead tr th:nth-child(3) {
+ 
+   color:black; 	
+   text-align:center;    
+}
+thead tr th:nth-child(4) {
+  
+   color:black; 	
+   text-align:center;    
+}
+thead tr th:nth-child(5) {
+  
+   color:black; 	
+   text-align:center;    
+}
+thead tr th:nth-child(6) {
+ 
+   color:black; 	
+   text-align:center;    
+}
+thead tr th:nth-child(7) {
+ 
+   color:black; 	
+   text-align:center;    
+}
+
+
+	   /* footer */
+	   
+.footer {
+	  position: fixed;
+  	  left: 0;
+ 	  bottom: 0;
+      width: 100%;
+      background-color: grey;
+      color: white;
+      text-align: center;
+}
+
+
+/* Header/Logo Title */
+.header {
+  padding: 15px;
+  text-align: center;
+  background: grey;
+  color: white;
+  font-size: 4px;
+}
+
+.btn-toolset-date {
+ display: inline-block;
+ text-align: center;
+ white-space: nowrap;
+ color: #FFFFFF;
+ text-decoration: none;
+ line-height: 1.2;
+ font-weight: normal;
+ font-family: sans-serif;
+ font-size: 15px;
+ background-color: #007BFF;
+ border-radius: 2px;
+ padding: 0px 2px;
+ border: 1px solid #006FE6;
+ cursor: pointer;
+}
+.btn-toolset-date:hover {
+ background-color: #0063CC;
+ border-color: #0056B3;
+}
+.btn-toolset-date > strong {
+ font-size: 15px;
+}
+
+	 
+</style>	   
+
+<script>
+var daModifica = false; 
+	
+function myFunction(x) {
+	//permette di salvare in custUd l'id della riga tabella selezionata 
+    var ind = x.rowIndex;
+    document.getElementById("custId").value = ind;	
+}
+
+
+//funzione per caricare il menu contestuale
+$(function() {
+
+    var $contextMenu = $("#contextMenu");
+//"body"
+    $("body").on("contextmenu", "#myTable tr", function(e) {  //"table tr"
+    	//debugger;
+    	 $contextMenu.css({
+              display: "block",
+              left: e.pageX,
+              top: e.pageY
+         });
+        
+         return false;
+    });
+
+    $('html').click(function() {
+         $contextMenu.hide();
+    });
+    
+    $(document).keyup(function(e) {
+        if (e.key === "Escape") { // escape key maps to keycode `27`
+            $contextMenu.hide();
+       }
+    });
+  
+  $("#contextMenu li a").click(function(e){
+	  debugger;
+    var  f = $(this);
+    
+  });
+
+});
+
+
+
+function DataPerTextArea(){
+	var today = new Date();
+	var dd = String(today.getDate()).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyy = today.getFullYear();		
+	today = dd + '/' + mm + '/' + yyyy +' -> ';
+	return today;				
+}
+
+function inserisciData(tagTextArea){
+	 document.getElementById(tagTextArea).value += DataPerTextArea();			
+}
+
+
+function Elimina(){
+	
+
+	   let indiceTab = document.getElementById("custId").value
+	   let chiave = document.getElementById("myTable").rows[indiceTab].cells.item(0).innerHTML;
+	  // alert('Elimina' +  document.getElementById("custId").value +' ' + chiave+ ' ');
+	   var r = confirm("Sei sicuro di voler cancellare questo Cliente?")
+	   if (r == true){
+	   		EliminaCliente(chiave);
+	   } 		
+	  
+ }
+
+
+
+
+function Modifica() {  //  modifica che va sul modale
+	
+	daModifica = true; 
+	
+	let indiceTab = document.getElementById("custId").value;			
+	let chiave = document.getElementById("myTable").rows[indiceTab].cells.item(0).innerHTML; //chiave
+	let cliente = document.getElementById("myTable").rows[indiceTab].cells.item(1).innerHTML;
+	let ragione = document.getElementById("myTable").rows[indiceTab].cells.item(2).innerHTML; 
+	let indirizzo  = document.getElementById("myTable").rows[indiceTab].cells.item(3).innerHTML; 
+	let telefono = document.getElementById("myTable").rows[indiceTab].cells.item(4).innerHTML;
+	let email  = document.getElementById("myTable").rows[indiceTab].cells.item(5).innerHTML;  
+
+	document.getElementById("clienteC").value = cliente;
+	document.getElementById("ragione").value = ragione;
+	document.getElementById('indirizzo').value = indirizzo;
+	document.getElementById('telefono').value = telefono;
+	document.getElementById('email').value = email;
+	document.getElementById('clienteId').value = chiave;
+	
+}
+
+function clearField(){
+	
+	document.getElementById("clienteC").value = "";
+	document.getElementById("ragione").value = "";
+	document.getElementById('indirizzo').value = "";
+	document.getElementById('telefono').value = "";
+	document.getElementById('email').value = "";
+	
+}
+
+// FUNZIONE PER PULIRE I CAMPI PREMENDO ESC 
+$(document).keyup(function(e) {
+    if (e.key === "Escape") { // escape key maps to keycode `27`
+    	clearField();
+        $exampleModal2.hide();
+   }
+});
+
+
+function salvaClientedaTastoPlus() {
+	
+	Myjson =  makeJsonInsertCliente();
+	$.ajax({
+ 		type: 'POST',
+ 		url: '/saveC',
+	 		data: Myjson, 	  	      
+	 		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+  //dataType: "json",
+ 		success: function(result) {
+     		//alert(result);
+	// $('#exampleModal2').modal('hide'); 
+     		//ricarica();
+	 	}, error: function() {
+   				alert("Chiamata FALLITA dal salvataggio, si prega di riprovare....");
+			}
+		});  
+	
+}
+
+
+
+function EliminaCliente(chiave){
+	
+	$.ajax({
+    		type: 'POST',
+    		url: "/eliminacliente",
+            data:  "idclienti="+chiave,  // parameters
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        	success: function(result){
+        			  alert(result);
+        			//$('#modalModificaData').modal('hide');
+        			 
+        			  ricarica();                  	
+        },error: function(){
+           alert("Chiamata FALLITA,  probabile sessione scaduta..");
+        }
+    }) // ajax 1 metodo
+	
+}
+
+
+
+
+function salvaCliente() {
+		//--controlli SOLO SUL CLIENTE
+			if (document.getElementById("clienteC").value == ''){
+				alert("indicare il cliente");
+				document.getElementById("clienteC").focus();  //localizzazione in abbinata con il false sotto
+				return false;
+			} 			
+			// fine controlli 
+			
+			if (daModifica){
+				
+				Myjson = makeJsonModificaCliente();
+			      
+				 $.ajax({
+					 async: false,
+					 type: 'POST',
+					 url: '/modificaC',
+			  	 	 data: Myjson, 	  	      
+			  	 	 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			          //dataType: "json",
+		             success: function(result) {
+		                 alert(result);
+		            	// $('#exampleModal2').modal('hide'); 
+		                 ricarica();
+		            	 	           
+		          	 }, error: function() {
+		               alert("Chiamata FALLITA dal salvataggio, si prega di riprovare....");
+		             }
+			 	});  
+				
+				} else {  //  da inserimento
+					     if (verificaSeGiaCliente(document.getElementById("clienteC").value)){
+					    	 	alert("Cliente già inserito in anagrafica!");
+								document.getElementById("clienteC").focus();  //localizzazione in abbinata con il false sotto
+								return false;
+					     } else {
+							 Myjson = makeJsonInsertCliente();
+					
+				             $.ajax({
+				            	async: false,
+						 		type: 'POST',
+						 		url: '/saveC',
+				  	 	 		data: Myjson, 	  	      
+				  	 	 		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+				          //dataType: "json",
+			             		success: function(result) {
+			                 		alert(result);
+			            	// $('#exampleModal2').modal('hide'); 
+			                 		ricarica();
+			            	 	}, error: function() {
+			               				alert("Chiamata FALLITA dal salvataggio, si prega di riprovare....");
+			           			}
+				 			});  
+					     }     
+				}
+						 
+			    daModifica = false;
+			 
+		//	 clearField();	 
+}  // -- FINE inserimento record
+	 
+	 
+	 //passaggio pararametri 
+	 function makeJsonInsertCliente() {
+	
+	     //   let id = document.getElementById("myTable").rows[indiceTab].cells.item(0).innerHTML;	
+			let cliente = document.getElementById("clienteC").value;
+			let ragione  = document.getElementById("ragione").value;
+			let indirizzo = document.getElementById('indirizzo').value;
+			let telefono = document.getElementById('telefono').value;
+			let email = document.getElementById('email').value;			
+			var vObj ={codcliente: cliente, ragione: ragione, indirizzo: indirizzo, phone: telefono, email: email};
+			return vObj;
+			
+	}
+	
+	 function makeJsonModificaCliente() {
+		 
+		   // let indiceTab = document.getElementById("custId").value;	
+	        //let id = document.getElementById("myTable").rows[indiceTab].cells.item(0).innerHTML;	
+	        let id = document.getElementById("clienteId").value
+			let cliente = document.getElementById("clienteC").value;
+			let ragione  = document.getElementById("ragione").value;
+			let indirizzo = document.getElementById('indirizzo').value;
+			let telefono = document.getElementById('telefono').value;
+			let email = document.getElementById('email').value;			
+			var vObj ={idclienti:id,  codcliente: cliente, ragione: ragione, indirizzo: indirizzo, phone: telefono, email: email};
+			return vObj;
+			
+	}
+	
+	 //funzione da richiamare all'uscita del campo per popolare gli altri campi con i dati del cliente
+	 function decodificaCliente(){
+		// alert ("ciao");
+		 /*
+		 verifica se esiste il cliente in anagrafica ed aggancia i dati
+		 altriementi lascia scrivere		 
+		 */
+		 if (document.getElementById("clienteC").value ==''){
+			 alert("indicare il cliente");
+			 document.getElementById("clienteC").focus();  //localizzazione in abbinata con il false sotto
+			return false;
+		 }
+		 if (verificaSeGiaCliente(document.getElementById("clienteC").value)){
+			 agganciaDatiCliente(document.getElementById("clienteC").value);
+		 } else {
+			 return false;
+		 }	 
+		 
+	 }
+	 
+	 
+	 //DATI CLIENTE ---- WIP 
+	function agganciaDatiCliente(cliente){
+		 
+		 
+		 var vObj ={codcliente: cliente};
+		 $.ajax({
+			 async: false,   // attiva la sincronizzazione se non va a campi - deprecato   - rifare con CallBack
+			 type: 'GET',
+			 url: '/daticliente',
+	  	 	 data: vObj, 	  	      //  data:  "chiave="+chiave,
+	  	 	 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+	          //dataType: "json",
+             success: function(result) {
+            	          	 
+            	 debugger;
+                 var myList = JSON.parse(result);   //JSON.parse()metodo analizza una stringa JSON, costruendo il valore JavaScript o l'oggetto descritto dalla stringa
+                 //alert(myList[0].ragione + " " +myList[0].codcliente); //  [{"codcliente":"gfsdfs@san.it","ragione":"04506"}]
+                 if (myList[0].codcliente == null) {
+                	 document.getElementById("clienteC").focus();  //localizzazione in abbinata con il false sotto
+         			 return false;
+                	  
+                 } else {
+                	 document.getElementById('ragione').value = myList[0].ragione;
+                	 document.getElementById('indirizzo').value = myList[0].indirizzo;
+                	 document.getElementById('telefono').value = myList[0].phone;
+                	 document.getElementById('email').value = myList[0].email;
+                	      	   
+                 }
+                         	
+          	 }, error: function() {
+           	    alert("Chiamata FALLITA dal salvataggio, si prega di riprovare....");
+             }
+	 	 });   
+		 //return risultato;			 
+	 }
+	
+		
+		
+		 
+		 function ricarica(){
+		     	window.location.href = "/clienti";
+		     	var daModifica = false;
+		 }
+		 
+		 function setRipetiCombo(){
+			 daInserimento = true;				
+			 $('#stampaEtic').bootstrapToggle('off')
+			   
+		  }
+		 
+		 function ripristinaToggle(){
+			  			
+				clearField();				  
+	     }
+		 
+		
+		 function verificaSeGiaCliente(cliente){
+			 
+			 let risultato;
+			 var vObj ={codcliente: cliente};
+			 $.ajax({
+				 async: false,   // attiva la sincronizzazione se non va a campi - deprecato   - rifare con CallBack
+				 type: 'GET',
+				 url: '/verifica',
+		  	 	 data: vObj, 	  	      //  data:  "chiave="+chiave,
+		  	 	 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		          //dataType: "json",
+	             success: function(result) {
+	            	// debugger;
+	                 //alert(result);
+	            	// $('#exampleModal2').modal('hide'); 
+	            	// getChange();
+	            	 risultato = result;	
+	            //	 return risultato;
+	          	 }, error: function() {
+	           	    alert("Chiamata FALLITA dal salvataggio, si prega di riprovare....");
+	             }
+		 	 });   
+			 return risultato;			 
+		 }
+		 
+		 
+		 
+		 function InserimentoClienteTask() {
+			 
+			 let cliente = document.getElementById("clienteC").value;			
+			 if (document.getElementById("clienteC").value == ''){
+					alert("indicare il cliente");
+					document.getElementById("clienteC").focus();  //localizzazione in abbinata con il false sotto
+					$('#exampleModal2').on('shown', function () {
+					      $('#exampleModal2').modal('hide');  //evita apertura se non dichiarato cliente
+					});
+					return false;
+			 }	else  {
+				 
+				 if (verificaSeGiaCliente(cliente)){
+					 //cliente cè già 
+					 $('#exampleModal2').modal({
+						    show: 'true'  // apri il modale
+					 }); 
+				     document.getElementById("cliente1").value = document.getElementById("clienteC").value;					 
+				 } else {
+					 salvaClientedaTastoPlus();
+					 $('#exampleModal2').modal({
+						    show: 'true'  // apri il modale
+					 }); 
+				     document.getElementById("cliente1").value = document.getElementById("clienteC").value;
+				 }
+								
+			 }	
+			
+		 }
+		 
+		 function InserimentotaskDaRiga() {
+			 
+			 let indiceTab = document.getElementById("custId").value;	
+		     let cliente = document.getElementById("myTable").rows[indiceTab].cells.item(1).innerHTML;	
+		     $('#exampleModal2').modal({
+				    show: 'true'  // apri il modale
+			 }); 
+		     document.getElementById("cliente1").value = cliente;
+			 
+		 }
+		 
+		 
+		
+		 
+		 
+		 function makeJsonInsert() {
+				
+				let cliente = document.getElementById("cliente1").value;
+				let task  = document.getElementById("task1").value;
+				let priorita = document.getElementById('priorita1').value;
+				let date = document.getElementById('dataScad1').value;
+				let nota = document.getElementById('Notatask1').value;
+				let phone = document.getElementById('phone2').value;
+				let email = document.getElementById('email2').value;
+				const tipoAttivita = 'L'; //attivita di tipo TASK di default
+				var vObj ={cliente: cliente, lavoro: task, dataconsegna: date, phone: phone, email: email, priorita: priorita, tipo: tipoAttivita, note: nota};
+				return vObj;
+
+			}
+		 
+		 
+		 
+		 
+		 // SALVATAGGIO TASK SE ARRIVO DA TASTO (+)
+		 function InserimentoRecord() {
+			 
+				//--controlli 
+					if (document.getElementById("cliente1").value == ''){
+						alert("indicare il cliente");
+						document.getElementById("cliente1").focus();  //localizzazione in abbinata con il false sotto
+						return false;
+					} if (document.getElementById("task1").value=='') {
+						alert("indicare il l'attività da fare");
+						document.getElementById("task1").focus();
+						return false
+					} if (document.getElementById("priorita1").value=='') {
+						alert("indicare la priorità");
+						document.getElementById("priorita1").focus();
+						return false
+						// -- DA QUA 
+					} if (document.getElementById("dataScad1").value == '') {
+						alert("Indicare la data di consegna/Scadenza!");
+						document.getElementById("dataScad1").focus();
+						return false; 
+					}
+					// fine controlli 
+					// salvaClientedaTastoPlus();  // salva il cliente 
+				   	 Myjson = makeJsonInsert();
+					 $.ajax({
+								 type: 'POST',
+								 url: '/save',
+						  	 	 data: Myjson, 	  	      
+						  	 	 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+						          //dataType: "json",
+					             success: function(result) {
+					                 alert(result);
+					            	 $('#exampleModal2').modal('hide'); 
+					            	// getChange();
+					            	 	           
+					           }, error: function() {
+					               alert("Chiamata FALLITA dal salvataggio, si prega di riprovare....");
+					           }
+						 });  
+					 
+					 clearField();	 
+					 ricarica();
+			 }  // -- FINE inserimento record
+			 
+			 
+			 function FunctionSearch() {
+				  var input, filter, table, tr, td, i, txtValue;
+				  input = document.getElementById("myInput");
+				  filter = input.value.toUpperCase();
+				  table = document.getElementById("myTable");
+				  tr = table.getElementsByTagName("tr");
+				  for (i = 0; i < tr.length; i++) {
+				    td = tr[i].getElementsByTagName("td")[1];  //colonna dove è attiva la ricerca
+				    if (td) {
+				      txtValue = td.textContent || td.innerText;
+				      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+				        tr[i].style.display = "";
+				      } else {
+				        tr[i].style.display = "none";
+				      }
+				    }       
+				  }
+			}
+		 
+
+</script>
+
+
+   </head> 
+   <body style="background-color:#a2b9bc" > 
+  	  <nav class="navbar navbar-expand-lg navbar-custom navbar-light">
+    		<div class="container-fluid">
+    		    <a><img src="favicon(1).ico"  width="30" height="30"><b><font face="Verdana" size="4.0">  TrallaLÀpp - Clienti</font></b></a>
+      		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         	   <span class="navbar-toggler-icon"></span>
+      	      </button>
+       		 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        	    <ul class="navbar-nav">
+         	      
+           		 </ul>
+            
+       	 	 </div>
+    	  </div>
+	 </nav>
+	<div class="container-fluid">
+	 <form>
+  		<div class="form-row">
+    		<div class="form-group col-md-6">
+     			 <label for="cliente">Cliente</label>
+      			 <input type="text" class="form-control" id="clienteC" onfocusout="">  
+    		</div>
+    		<div class="form-group col-md-6">
+     			 <label for="Ragione sociale">Ragione sociale</label>
+    	         <input type="text" class="form-control" id="ragione">
+  	        </div>
+  	   </div>
+  	   <div class="form-group">
+    		<label for="inputAddress">Indirizzo</label>
+            <input type="text" class="form-control" id="indirizzo">
+  	   </div>
+  	  <div class="form-row">
+  	   <div class="form-group col-md-6">
+          <label for="telefono">Telefono</label>
+          <input type="text" class="form-control" id="telefono">
+       </div>
+       <div class="form-group col-md-6">
+       	  <label for="inputCity">E-mail</label>
+   	      <input type="email" class="form-control" id="email">
+   	  </div>
+      <input type="hidden" id="clienteId" name="clienteId" >
+     </div>
+  <div class="form-group">
+      <button type="button" class="btn btn-primary" onclick="salvaCliente()">Salva</button>&nbsp;&nbsp; 
+      <input type="button" class="btn btn-primary btn-toolset" value="+" onclick ="InserimentoClienteTask();">&nbsp;&nbsp; 
+      <button type="button" class="btn btn-primary" onclick="window.location.href = '/tasks'">Elenco Task</button>
+      <button type="button" class="btn btn-success" onclick="window.location.href = '/'">DashBoard</button>
+      
+  </div>  
+</form>
+</div>
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-12 p-2">
+      	 		 <div class="container-fluid panel-body shadow-lg p-1 mb-1 bg-white rounded">
+<!--  <div class="container-fluid p-4" style="border:1px solid #cecece">  -->
+ 					 <div class="table-wrapper" style="border:0.2 px solid #cecece" >         <!-- onkeyup -->
+              		   <table id="myTable" class="table-sm table-hover"> <!--  table-hover --> 
+                           <thead class ="thead">
+                                <tr>
+                                    <th scope="col">Cliente <input type="text" id="myInput" onkeyup="FunctionSearch()" placeholder="Ricerca per nome.." title="Type in a name">&nbsp;<i class="fa fa-search" style="font-size:19px"></i></th>
+                                    <th scope="col">Ragione sociale <input type="text" id="myInput2" onClick="FunctionSearchTask()" placeholder="Ricerca per task.." title="Type in a name" onkeyup="">&nbsp;<i class="fa fa-search" style="font-size:19px"></i></th>
+                                    <th scope="col"><i class="fa fa-calendar" style="font-size:19px"></i> Indirizzo</th>
+                                    <th scope="col"><i class="fa fa-phone" style="font-size:19px"></i> Telefono</th>
+                                    <th scope="col"><i class="fa fa-envelope" style="font-size:19px"></i> E-mail</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>                                                                                                                                          
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <tr th:each="cliente : ${clienti}"  onmouseover="myFunction(this)">
+                                    <td style = "display:none" th:text="${cliente.getIdclienti()}" ></td>
+                                    <td th:text="${cliente.getCodcliente()}" contenteditable='true'></td>
+                                    <td th:text="${cliente.getRagione()}" contenteditable='true'></td>                                   
+                                    <td th:text="${cliente.getIndirizzo()}"></td>     
+                                    <td th:text="${cliente.getPhone()}"></td> 
+                                    <td th:text="${cliente.getEmail()}"></td>   
+                                    <td><input type="button" title='Inserisci task' value ='+' class='btn btn-primary btn-toolset-min' id='task' onclick='InserimentotaskDaRiga()'></input></td>                                                                                         
+                                    <td><a><button  name="bottone" id="bottone" title='Modifica Task' class='btn btn-info'   th:onclick="Modifica()"><i class='far fa-edit' style='font-size:16px'></i></button></a></td>                                                                
+                               </tr>
+                            </tbody>
+                       </table>                       
+                       <input type="hidden" id="custId" name="custId" >
+                      <div id="fill"></div>
+                  </div>   
+	 	        </div>  
+	 	      </div>   <!-- col-12 p-2  -->    
+</div>
+</div>
+
+
+<!-- MOdale inserimento -->
+
+<!-- aria-labelledby="exampleModalLabel" aria-hidden="true" -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"  aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  				<div class="modal-dialog modal-lg" role="document">
+  					  <div class="modal-content">
+     					 <div class="modal-header">
+      						  <h5 class="modal-title" id="exampleModalLabel">Attività - Inserimento</h5>
+     						   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        						  <span aria-hidden="true">&times;</span>
+     						   </button>
+     					 </div>
+     					 <div class="modal-body shadow-lg p-3 mb-5 bg-white rounded">     					  		
+     					  		<form>
+     					  		     <!-- CLEINTE -->
+ 									 <label for="fname" class="col-form-label">Cliente:</label><br>
+ 									 <script type="text/javascript"> daInserimento = true;</script> 
+ 									 <input type="text" list="client" class="form-control"  name="cliente1" id="cliente1" onfocusout="decodificaMailPhone()"><br>  <!-- id="cliente1" -->
+ 									 <datalist id="client">
+     									
+      										  <option th:each="cliente: ${clienti}" th:value=" ${cliente.codcliente}+ '  |  '+${cliente.ragione}">
+      										  </option>
+    									
+    								 </datalist>	    								 
+    								 <label for="lname" class="col-form-label">Lavoro/Defect/Task:</label><br>
+ 									 <textarea id="task1" class="form-control" name="task1" rows="4" cols="80"></textarea><br>
+ 									 <label for="lnota" class="col-form-label">Nota:</label>&nbsp;&nbsp;&nbsp<button type="button" class="btn-toolset-date" onclick="inserisciData('Notatask1')">data</button><br>
+ 									 <textarea id="Notatask1" class="form-control" name="Notatask1" rows="4" cols="80"></textarea><br>
+ 									 <label for="prio" class="col-form-label">Priorità:</label><br>
+ 									 <select name="priorita1" class="form-control" id="priorita1">
+         						  	  <option value="1">1</option>
+                       				  <option value="2">2</option>
+                       				  <option value="3">3</option>
+                       				  <option value="4">4</option>
+                       				  <option value="5">5</option>
+                       				  <option value="6">6</option>
+                       				  <option value="7">7</option>      
+                       				  <option value="8">8</option>   
+                       				  <option value="9">9</option>   
+                       				  <option value="10">10</option>                      			
+         							</select><br>
+         							
+         							<div class="allinea">
+         							 <label for="data" class="col-form-label">Data Consegna:</label>
+ 									 <input style="width:200px" type="date" class="form-control" required id="dataScad1" name="dataScad1">
+ 									</div><br>
+ 									 <label for="mail" class="col-form-label">E-mail:</label>
+ 									 <input type="email" class="form-control" required id="email2" name="email2"><br> 									 
+ 									 <label for="mail" class="col-form-label">Telefono:</label><br>
+ 									 <input type="email" class="form-control" required id="phone2" name="phone2"><br>       									 
+								</form>
+    					  </div>
+    					  <div class="modal-footer">
+    					         <label for="stampa" class="col-form-label">Stampa:</label>
+    					         <input type ='checkbox' id="stampaEtic">  
+       					  		 <button type="button" class="btn btn-secondary" data-dismiss="modal"  onclick="ripristinaToggle()">Chiudi</button>
+      							 <button type="button" class="btn btn-primary" onclick="InserimentoRecord()">Salva</button>
+     					 </div>
+    				</div>
+  			   </div>
+			</div>
+ <!-- menu contestuale -->          
+              <div id="contextMenu" class="dropdown clearfix">
+    						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">
+      							<li><a tabindex="-1" href="#" onclick="Elimina(); return false;" ><i class='far fa-trash-alt' style='font-size:18px'></i> Elimina</a>
+      							</li>
+      							<li><a tabindex="-1" href="#" onclick="Modifica(); return false;" ><i class='far fa-edit' style='font-size:16px'></i> Modifica</a>
+      							</li>
+    						</ul>
+  			</div>
+   <!-- menu contestuale -->   
+ 
+ 
+ 
+	 
+	 
+     
+       <div class="footer">
+ 		 <p>2021 - Enrsto - Versione 2.0 - WRK</p>
+	   </div> 
+   </body>
+   <script>
+
+   if ((localStorage.getItem("storageName"))){
+	   
+	   document.getElementById("clienteC").value = localStorage.getItem("storageName");
+   	
+   } else {
+  			 	
+  			 	var value = localStorage.getItem("testObject");
+  			 	var oggetto =  JSON.parse(value);
+  			 	
+  			 	var idclienti = oggetto.idclienti;
+  			 	var cliente = oggetto.codcliente;
+  			 	var ragione = oggetto.ragione;
+  			 	var indirizzo = oggetto.indirizzo;
+  			 	var phone = oggetto.phone;
+  			 	var email = oggetto.email;
+  			 	
+  			 	window.onload = carica(idclienti,cliente,ragione,indirizzo,phone,email);
+  			 	daModifica = true;
+   }	
+   localStorage.clear();
+	
+	
+	
+	function carica(idclienti,cliente,ragione,indirizzo,phone,email){
+		
+		document.getElementById("clienteId").value = idclienti
+		document.getElementById("clienteC").value = cliente;				
+		document.getElementById("ragione").value = ragione;		
+		document.getElementById("indirizzo").value = indirizzo;		
+		document.getElementById("telefono").value = phone; 		
+		document.getElementById("email").value = email;		
+		
+	}
+    
+	
+
+</script>
+
+   
+   
+   
+   
+</html>

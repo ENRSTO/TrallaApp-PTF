@@ -1,0 +1,172 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"      xmlns:th="https://www.thymeleaf.org" > 
+   <head> 
+      <title>TrallalÀpp - WEB -> Impostazioni </title> 
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="http://localhost:8080"> 
+ <!--    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> --> 
+     <!-- <script type="text/javascript" src="libreria.js"></script
+       <script type="text/javascript" src="../static/assets/libreria.js" th:src="@{/assets/libreria.js}"></script>>-->
+    
+<!--  crossorigin="http://localhost:8080" anonymous il valore  che c'era prima nel cross origin -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- toogle -->
+
+		<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+	   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  
+	 
+<style type="text/css">
+	   /* footer */
+
+
+.footer {
+	  position: fixed;
+  	  left: 0;
+ 	  bottom: 0;
+      width: 100%;
+      background-color: grey;
+      color: white;
+      text-align: center;
+}
+
+
+/* Header/Logo Title */
+.header {
+  padding: 15px;
+  text-align: center;
+  background: grey;
+  color: white;
+  font-size: 4px;
+}
+
+.navbar-custom {
+    background-color: #508bfc;
+}
+
+
+[v-cloak] {
+      display: none;
+}
+ 	 
+</style>	
+
+
+ </head> 
+ <body style="background-color:#a2b9bc"> 
+
+   <div style="background-color:#a2b9bc"> 
+    
+
+    <nav class="navbar navbar-expand-lg navbar-custom navbar-light">
+      <div class="container-fluid">
+          <a><img src="favicon(1).ico"  width="30" height="30"><b><font face="Verdana" size="4.0">  TrallaLÀpp - Impostazioni App</font></b></a> <h4 style ="position:relative;left:10%"><div  id = "ruolo"  th:attr="value=${ruolo}"></div></h4> 
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+               
+              </ul>
+          
+           </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="form-group" id="app" v-cloak>
+        <form>
+          <input hidden id="utente" th:attr="value=${ruolo}">
+         <div class="form-row">
+            <div class="form-group col-md-6">
+             <label for="mittente">Mittente</label>  <!--  th:attr="'v-bind='{text:'+${message}+'}'"/-->
+             <input @[event]="validate" placeholder="Inserisci mittente" class="form-control" id="mitt" th:attr="'v-bind:value'=${ruolo}"  v-model ="mittent">  <!-- th:attr="value=${ruolo}" :v-bind="mittent"-->
+             <!--th:field="${ruolo}"     v-model="mittent"-->           
+              <div :style="[baseStyles]" class="error">{{ errorMsg }}</div>                    
+            </div>  
+         </div>
+         <div class="form-row">
+           <div class="form-group col-md-6">             
+             <label for="email">E-mail / Account</label>
+             <input type="text" @[event]="validateMail" placeholder="Inserisci una Mail" class="form-control" v-model="mail" onfocusout=""> 
+             <div :style="[baseStyles]"  class="error">{{ errorMsgMail }}</div>            
+           </div>  
+         </div>
+         <div class="form-row">
+           <div class="form-group col-md-6">
+             <label for="host">Host - database</label>             
+             <input  type="text" @[event]="validateHost" placeholder="Inserisci una Host" class="form-control"  v-model="host" onfocusout="">  
+             <div :style="[baseStyles]"  class="error">{{ errorMsgHost }}</div>  
+           </div>      
+         </div>
+         <div class="form-row">
+          <div class="form-group col-md-2">
+            <label for="port">Porta</label>
+            <input type="text" @[event]="validatePort" placeholder="Inserisci porta" class="form-control" v-model="port"  onfocusout="">  
+            <div :style="[baseStyles]" class="error">{{ errorMsgPort }}</div>
+          </div>      
+         </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="google">Accesso account Google</label>
+            <input  type="text"  class="form-control" placeholder="Inserisci codice Google" v-model="googleKey" onfocusout="">  
+          </div>      
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" @click="saveImpostazioni">Salva</button>&nbsp;&nbsp;           
+          <button type="button" class="btn btn-primary" onclick="window.location.href = '/tasks'">Elenco Task</button>&nbsp;&nbsp; 
+          <button type="button" class="btn btn-success" onclick="window.location.href = '/'">DashBoard</button>              
+        </div> <!--
+               <div v-html = "htmlTest">
+                 {{htmlTest}}
+               </div>   
+               <button @click="id(1)">Pulsante 1</button>
+               <button @click="id(2)">Pulsante 2</button>
+               <button @click="id(3)">Pulsante 3</button>
+               <input type="text" @[event]="validate" placeholder="Inserisci del testo">
+
+               eventuale messaggio di errore 
+                <div class="error">{{ errorMsg }}</div>
+              <input type="text" @input="validate('Name', $event)"> -->
+
+       </form>
+      </div>
+    
+   
+   
+      
+ 
+
+
+   <!--
+      <div class="container-fluid">
+        <p>Hello, {{ name }}</p>
+        <div class="display">
+          <span>{{ randomNumber }}</span>
+        </div>
+    
+         <div class="form-group">
+           <button type="button" class="btn btn-primary" @click="generateRandomNumber">Applica</button>&nbsp;&nbsp;           
+           <button type="button" class="btn btn-primary" onclick="window.location.href = '/tasks'">Elenco Task</button>&nbsp;&nbsp; 
+           <button type="button" class="btn btn-success" onclick="window.location.href = '/'">DashBoard</button>              
+         </div>  
+      </div> 
+    </div> -->
+   
+
+   
+ 
+    
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript" src="../assets/libreria2.js" ></script>
+
+<!-- th:src="@{/assets/libreria.js}"-->
+ 
+</body>
+
+
+
+</html>
