@@ -1821,8 +1821,7 @@ function buildHtmlTable2(myList) {
 
 <div class="row flex-nowrap"> 
         <div class="col"><!-- face="Verdana" size="4.5" -->
-      	 	<ul>
-  				<!-- <li><a class="active panel-body shadow-lg"><img src="favicon(1).ico"  width="30" height="30"><b><font face="Verdana" size="4.5">&nbsp;&nbsp;TrallalÀpp :: Benvenuto <span th:text="${ruolo}"></span></font></b></a></li>  <!-- container-fluid panel-body shadow-lg -->
+      	 	<ul>  			
   				<li>&nbsp;</li>
   				<li><b>&nbsp;</b></li>  	<!-- style="border:3px; border-style:solid; border-color:#FF0000; padding: 1em;" border-color:#FF0000; padding: 1em;" -->
   				<li><b>&nbsp;</b></li>
@@ -1837,16 +1836,16 @@ function buildHtmlTable2(myList) {
   				<li><b>&nbsp;</b></li>   
   				<li><b>&nbsp;</b></li>	
   				<li><b>&nbsp;</b></li> 	
-  				<li><a th:href="@{/}"><i class='far fa-clipboard' style='font-size:20px'></i>&nbsp;DashBoard</a></li>		   				    				
-  				<li><a th:href="@{clienti}"><i class='far fa-address-card' style='font-size:20px'></i>&nbsp;Clienti</a></li>
-  				<li><a href="#scad" onclick="scaduti();scadutiVar=true;"><i class='fas fa-calendar-times' style='font-size:20px'></i>&nbsp;Eventi Scaduti</a></li>
-  				<li><a href="#evasi" onclick="evasi();"><i class='far fa-calendar-check' style='font-size:20px'></i>&nbsp;Eventi Evasi</a></li>
+  				<li><a th:href="@{/}"><i class='fa fa-clipboard' style='font-size:20px'></i>&nbsp;DashBoard</a></li>		   				    				
+  				<li><a th:href="@{clienti}"><i class='fa fa-address-card' style='font-size:20px'></i>&nbsp;Clienti</a></li>
+  				<li><a href="#scad" onclick="scaduti();scadutiVar=true;"><i class='fa fa-calendar-times-o' style='font-size:20px'></i>&nbsp;Eventi Scaduti</a></li>
+  				<li><a href="#evasi" onclick="evasi();"><i class='fa fa-calendar-check-o' style='font-size:20px'></i>&nbsp;Eventi Evasi</a></li>
  				<li><a href="#about" data-toggle="modal" data-target="#modalAbout" onclick ="" ><i class="fa fa-question-circle" style="font-size:20px"></i>&nbsp;About</a></li>
  				<li><b>&nbsp;</b></li> 
- 				<li><a href="#impo"><i class='fas fa-cogs' style='font-size:20px'></i>&nbsp;Impostazioni</a></li>
- 				<li><a th:href="@{/logout}"><i class='fas fa-hourglass-end' style='font-size:20px'></i>&nbsp;logout</a></li>  
+ 				<li><a href="#impo"><i class='fa fa-cogs' style='font-size:20px'></i>&nbsp;Impostazioni</a></li>
+ 				<li><a th:href="@{/logout}"><i class='fa fa-hourglass-end' style='font-size:20px'></i>&nbsp;logout</a></li>  
  				<li><b>&nbsp;</b></li> 
- 				<li><a th:href="@{/shutdown-app}"><i class='fas fa-power-off' style='font-size:20px'></i>&nbsp;Uscita</a></li>
+ 				<li><a th:href="@{/shutdown-app}"><i class='fa fa-power-off' style='font-size:20px'></i>&nbsp;Uscita</a></li>
 			</ul>
        </div>
 	 
@@ -1926,8 +1925,8 @@ function buildHtmlTable2(myList) {
                                     <td th:text="${task.getEmail()}"></td>   
                                     <td style = "display:none" th:text="${task.getTipo()}"></td>
                                     <td th:text="${task.getPriorita()}" contenteditable='true'></td>          <!-- class='btn btn-success' -->                         
-                                    <td><a><button  name="bottone" id="bottone" title='Modifica Task' class='btn btn-info' data-toggle="modal" data-target="#exampleModal" th:onclick="Modifica()"><i class='far fa-edit' style='font-size:16px'></i></button></a></td>
-                                    <td><button type='button' title='Evadi Task' class='btn btn-success' name='fatto' id='fatto' onclick='Evasione()'><i class='fas fa-angle-double-down' style='font-size:16px'></i></button></td>
+                                    <td><a><button  name="bottone" id="bottone" title='Modifica Task' class='btn btn-info' data-toggle="modal" data-target="#exampleModal" th:onclick="Modifica()"><i class="fa fa-edit" style='font-size:16px'></i></button></a></td>
+                                    <td><button type='button' title='Evadi Task' class='btn btn-success' name='fatto' id='fatto' onclick='Evasione()'><i class='fa fa-angle-double-down' style='font-size:16px'></i></button></td>
                                     <td><input type ='checkbox' name='lang' id='lang' onclick=''></td>
                                  <!-- <td><a><button  name="bottone" id="bottone" data-toggle="modal" data-target="#exampleModal" th:onclick="'getValori(\'' + ${task.getIdreminder()} + '\');'">Modifica Riga</button><i></i></a></td> -->
                                </tr>
