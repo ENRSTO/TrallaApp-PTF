@@ -388,17 +388,6 @@ button#fatto:focus
   position: fixed;
 }
 
-/*   bottoni in grid   
-.btn {
-  background-color: DodgerBlue;
-  border: none;
-  color: white;
-  padding: 12px 16px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* Darker background on mouse-over */
 .btn:hover {
   background-color: RoyalBlue; 
 }
@@ -1957,7 +1946,7 @@ function buildHtmlTable2(myList) {
 	   	  		<div  class="col-4 p-2" style="position: relative; top: 5px">
 	   	  		 		
 	   	  				<input type="button" class="btn-toolset-elimina" id="cambiodata" value="Cambio data / Duplica"  data-toggle="modal" data-target="#modalModificaData" onclick ="" >&nbsp;
-	   	  				<button class="btn-toolset-elimina" onclick ="GetSelectedReport()"><i class='fas fa-print' style='font-size:19px;color:white;top:1px'></i> Stampa</button>&nbsp;
+	   	  				<button class="btn-toolset-elimina" onclick ="GetSelectedReport()"><i class='fa fa-print' style='font-size:19px;color:white;top:1px'></i> Stampa</button>&nbsp;
 	   	  				<button class="btn-toolset-elimina" onclick ="GetSelectedNew()"><i class="fa fa-trash"></i> Elimina</button>&nbsp;
 	   	  				<input type="button" class="btn-toolset" value="+" data-toggle="modal" data-target="#exampleModal2" onclick ="setRipetiCombo()" >&nbsp;&nbsp;
 	   	        <!-- PULSANTI CENTRALI -->				
@@ -2252,13 +2241,15 @@ function buildHtmlTable2(myList) {
  		 <p>2022 - EnrstoSw - Versione 2.0 - WRK</p>
 	 </div>
 	 
-</div>
+</div>  
+<!-- class='far fa-trash-alt'  -->
+
  <!-- menu contestuale -->          
               <div id="contextMenu" class="dropdown clearfix">
     						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">
-      							<li><a tabindex="-1" href="#" onclick="Elimina(); return false;" ><i class='far fa-trash-alt' style='font-size:18px'></i> Elimina</a>
+      							<li><a tabindex="-1" href="#" onclick="Elimina(); return false;" ><i class='fa fa-trash' style='font-size:18px'></i> Elimina</a>
       							</li>
-      							<li><a tabindex="-1" href="#" onclick="Duplica(); return false;"><i class='far fa-clone' style='font-size:18px'></i> Duplica</a>
+      							<li><a tabindex="-1" href="#" onclick="Duplica(); return false;"><i class='fa fa-clone' style='font-size:18px'></i> Duplica</a>
       							</li>
       							<li><a tabindex="-1" href="#" data-toggle="modal" data-target="#modalModificaDataRiga" onclick="sposta();"><i class='far fa-calendar-alt' style='font-size:18px'></i>  Sposta</a>
       							</li>
