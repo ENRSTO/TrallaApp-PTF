@@ -20,10 +20,7 @@
 <!-- toogle -->
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-
- 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <!--  -->
 
  <style type="text/css">
@@ -31,8 +28,6 @@
 
 
 div.allinea { float:left; margin-left:5px; }
-
-
 /* menu */
 ul {
   list-style-type: none;
@@ -62,13 +57,9 @@ li a:hover:not(.active) {
   background-color: #555;
   color: white;
 }
-
-
 /* menu -- fine*/
 
 /* footer */
-
-
 .footer {
   position: fixed;
   left: 0;
@@ -88,7 +79,6 @@ table{
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
   
 }
-
 
 thead,
 tfoot {
@@ -129,7 +119,6 @@ tbody>tr>:nth-child(2){
 	background-color: rgb(green);
 }
 
-
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: #ACD1E0;
 }
@@ -149,15 +138,11 @@ th{
     max-width: 80%;
 }
 
-
-  tr{cursor: pointer; transition: all .25s ease-in-out}
+tr{cursor: pointer; transition: all .25s ease-in-out}
      .selected{background-color: blue; 
      font-weight: bold; 
      color: #fff;
-  }
-  
-  
-  
+}
 
 .myform{
   border-collapse: collapse;
@@ -168,13 +153,7 @@ th{
   height: 100px;
   display:none;
 }
-  
-
-
-
-
 /*--------------------------------------------------------------menu on table row */
-
 #contextMenu {
   position: absolute;
   display: none;
@@ -185,16 +164,13 @@ th{
   display:block;
   margin:0 auto;
 }
-
-
-   .container {
+.container {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
-
 /*-----botton + ---------*/ 
 .btn-toolset-min {
  display: inline-block;
@@ -232,42 +208,35 @@ tr.strikeout td:before {
 tr.strikeout td:after {
   content: "\00B7";
   font-size: 1px;
-}
-       
+}       
 </style>
-
- 
  <script type="text/javascript">
  
- function DatadiOggi(){
-		
+ function DatadiOggi(){		
 		var today = new Date();
 		var dd = String(today.getDate()).padStart(2, '0');
 		var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 		var yyyy = today.getFullYear();
 		today = '  '+ dd + '-' + mm + '-' + yyyy;
 		document.getElementById("mydate").innerHTML = today;
-								
- }
+ } // DatadiOggi
  
  function pressed(colore,priorita){
 	 document.getElementById(colore).classList.remove('shadow-lg');
 	 document.getElementById(colore).classList.add('shadow-none');
 	 passaggioPriorita(priorita);
-	 
- }
- 
+ } // pressed
  
  function outButton(colore){
 	 document.getElementById(colore).classList.remove('shadow-none');
 	 document.getElementById(colore).classList.add('shadow-lg');
- }	
+ } // outButton
  
 	
 function passaggioPriorita(priorita){	
 	localStorage.setItem("storagePrio",priorita);  //passaggio dato alla pagina web  
 	window.location.href = 'tasks';		
-}	
+} // passaggioPriorita	
 
 function openForm(){
 	 var x = document.getElementById("myform");
@@ -276,49 +245,12 @@ function openForm(){
 	  } else {
 	    x.style.display = "none";
 	  }	
-}
-	 
+} // openForm
  
 </script>
 <script type="text/javascript">
-      
-google.charts.load("current", {packages:["corechart"]});
-google.charts.setOnLoadCallback(drawChart);
-
-
-/*      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);*/
-
-     /* function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses', 'Profit'],
-          ['2014', 1000, 400, 200],
-          ['2015', 1170, 460, 250],
-          ['2016', 660, 1120, 300],
-          ['2017', 1030, 540, 350]
-        ]);
-
-        var options = {
-          chart: {
-            title: 'Andamento giornaliero:',
-            subtitle: 'Prova',           
-            chartArea: {
-                backgroundColor: {
-                  fill: '#579cc9',
-                  fillOpacity: 0.1
-                },
-              },
-          },  
-         	backgroundColor: {
-            fill: '#579cc9',
-            fillOpacity: 0.8
-          },
-          
-        };
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }*/
-      
+	  google.charts.load("current", {packages:["corechart"]});
+	  google.charts.setOnLoadCallback(drawChart);
       
       function drawChart() {
           var data = google.visualization.arrayToDataTable([
@@ -338,29 +270,18 @@ google.charts.setOnLoadCallback(drawChart);
                 fillOpacity: 0.8
               },
           };
-
           var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
           chart.draw(data, options);
-        }
+      } // drawChart
    
-      
-      
-      
-      
-      
       function makeJsonInsert() {
-			
 			let scadenza = document.getElementById("fname").value;    			
 			let date = document.getElementById('datascad').value;
 			let vObj ={scadenza: scadenza, dataconsegna: date};    		    					
 		    return vObj;
-		    
-	  }
-      
-      
-      
-      function InserimentoRecord() {
-    		 
+	  } // makeJsonInsert
+                 
+      function InserimentoRecord() {    		 
     		//--controlli 
     			if (document.getElementById("fname").value == ''){
     				alert("indicare la scadenza");
@@ -372,7 +293,6 @@ google.charts.setOnLoadCallback(drawChart);
     				return false; 
     			}
     			// fine controlli 
-    			
     		   	 Myjson = makeJsonInsert();
     			 $.ajax({
     					     type: 'POST',
@@ -392,11 +312,9 @@ google.charts.setOnLoadCallback(drawChart);
     			 x.style.display = "none"; 
     			 window.location.href = "/";    			
     			 rigaRow();    				 
-    	 }  // -- FINE inserimento record
+    	 }  // inserimento record
     	 
-    	 
-    	 function RigaRow(){
-			  
+    	 function RigaRow(){			  
     		  $('#myTable tr').each(function () {
     			   debugger
     			   var stato = $('td',this).eq(3).text();
@@ -410,22 +328,15 @@ google.charts.setOnLoadCallback(drawChart);
     	 	               // statements_def
     	 	               break;
     	 	       }
-    	 	     
-    	 	      
     	 	    });
-    	  }
-    	 
-    	 
+    	  } // RigaRow
     	 
     	  function prendiAnno(){
     		  let oggi = new Date();
     		  document.getElementById("showAnno").innerHTML = oggi.getFullYear();     		  
-    	  }
-              
+    	  } // prendiAnno
       
-      
-    </script>
-   
+    </script>   
  </head>
  
  <body  style="background-color:#a2b9bc"  onload="DatadiOggi();prendiAnno();openForm()">
@@ -538,45 +449,29 @@ google.charts.setOnLoadCallback(drawChart);
 
 <div id="myform" class="col-sm-9 myform">
 <!-- class="col-sm-4" style ="position:relative;right:3%"    ;   buono class="col-sm-9 myform" -->
- <form id="formScadenza" action="">
- 	<div class="allinea">
- 	 <label for="fname">Scadenza:</label><br>
-  	 <input type="text" id="fname"  size="35" name="fname">
-    </div>
-    <div class="allinea">
-      <label for="lname">Quando:</label><br>
-  	  <input type="date" id="datascad" name="datascad"><br>
-    </div>  
-    <br>  
-    <br>  
-    <br>       
-</form> 
-<div class="allinea">
- 	  <input type="submit" value="Salva" onclick="InserimentoRecord()">
+ 	<form id="formScadenza" action="">
+ 		<div class="allinea">
+ 			 <label for="fname">Scadenza:</label><br>
+  			 <input type="text" id="fname"  size="35" name="fname">
+    	</div>
+    	<div class="allinea">
+    	  	<label for="lname">Quando:</label><br>
+  	 		 <input type="date" id="datascad" name="datascad"><br>
+    	</div>  
+    	<br>  
+    	<br>  
+    	<br>       
+ 	</form> 
+	<div class="allinea">
+ 		  <input type="submit" value="Salva" onclick="InserimentoRecord()">
+	</div>
 </div>
 </div>
- 
- 
- </div>
- 
- 
- 
-     
 </div>
-
- 
-
-
-
 </div>
-
- 
- 
-     
      <div class="footer">
  		 <p>2022 - EnrstoSw - Versione 2.0 - WRK</p>
 	 </div>
-
  <!-- menu contestuale -->          
               <div id="contextMenu" class="dropdown clearfix">
     						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">
@@ -592,7 +487,6 @@ google.charts.setOnLoadCallback(drawChart);
     						</ul>
   			</div>
    <!-- menu contestuale -->   
-           
            
           <!-- Modal -->
 
@@ -624,11 +518,7 @@ google.charts.setOnLoadCallback(drawChart);
 	   	 </div>
 
 <script> 
-//la funzione la richiamo anche qua perchè altrimenti non ridimensiona correttamnete da un monitor all'altro
- //  resizeBrowser();
+	//la funzione la richiamo anche qua perchè altrimenti non ridimensiona correttamnete da un monitor all'altro
+ 	//  resizeBrowser();
 </script>
-
- 
- </body> 
-  
  </html>
